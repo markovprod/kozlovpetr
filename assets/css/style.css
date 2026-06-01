@@ -1,0 +1,693 @@
+@font-face {
+	font-family: 'Istok Web';
+	src: url('../fonts/IstokWeb-Regular.woff2') format('woff2');
+	font-weight: normal;
+	font-style: normal;
+	font-display: swap;
+}
+ /**
+  Нормализация блочной модели
+ */
+*,
+::before,
+::after {
+  box-sizing: border-box;
+}
+
+/**
+  Убираем внутренние отступы слева тегам списков,
+  у которых есть атрибут class
+ */
+:where(ul, ol):where([class]) {
+  padding-left: 0;
+}
+
+/**
+  Убираем внешние отступы body и двум другим тегам,
+  у которых есть атрибут class
+ */
+body,
+:where(blockquote, figure, fieldset):where([class]) {
+  margin: 0;
+}
+
+/**
+  Убираем внешние отступы вертикали нужным тегам,
+  у которых есть атрибут class
+ */
+:where(
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p,
+  ul,
+  ol,
+  dl
+):where([class]) {
+  margin-block: 0;
+}
+
+:where(dd[class]) {
+  margin-left: 0;
+}
+
+:where(fieldset[class]) {
+  padding: 0;
+  border: none;
+}
+
+/**
+  Убираем стандартный маркер маркированному списку,
+  у которого есть атрибут class
+ */
+:where(ul[class]) {
+  list-style: none;
+}
+
+:where(address[class]) {
+  font-style: normal;
+}
+
+/**
+  Обнуляем вертикальные внешние отступы параграфа,
+  объявляем локальную переменную для внешнего отступа вниз,
+  чтобы избежать взаимодействие с более сложным селектором
+ */
+p {
+  --paragraphMarginBottom: 24px;
+
+  margin-block: 0;
+}
+
+/**
+  Внешний отступ вниз для параграфа без атрибута class,
+  который расположен не последним среди своих соседних элементов
+ */
+p:where(:not([class]):not(:last-child)) {
+  margin-bottom: var(--paragraphMarginBottom);
+}
+
+
+/**
+  Упрощаем работу с изображениями и видео
+ */
+img,
+video {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+/**
+  Наследуем свойства шрифт для полей ввода
+ */
+input,
+textarea,
+select,
+button {
+  font: inherit;
+}
+
+html {
+  /**
+    Пригодится в большинстве ситуаций
+    (когда, например, нужно будет "прижать" футер к низу сайта)
+   */
+  height: 100%;
+  /**
+    Убираем скачок интерфейса по горизонтали
+    при появлении / исчезновении скроллбара
+   */
+  scrollbar-gutter: stable;
+  /**
+    Плавный скролл
+   */
+  scroll-behavior: smooth;
+}
+
+body {
+  /**
+    Пригодится в большинстве ситуаций
+    (когда, например, нужно будет "прижать" футер к низу сайта)
+   */
+  min-height: 100%;
+  /**
+    Унифицированный интерлиньяж
+   */
+  line-height: 1.5;
+}
+
+/**
+  Нормализация высоты элемента ссылки при его инспектировании в DevTools
+ */
+a:where([class]) {
+  display: inline-flex;
+}
+
+/**
+  Курсор-рука при наведении на элемент
+ */
+button,
+label {
+  cursor: pointer;
+}
+
+/**
+  Убирает серую подсветку при тапе на мобильных устройствах (iOS/Android)
+ */
+button {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/**
+  Приводим к единому цвету svg-элементы
+  (за исключением тех, у которых уже указан
+  атрибут fill со значением 'none' или начинается с 'url')
+ */
+:where([fill]:not(
+  [fill="none"],
+  [fill^="url"]
+)) {
+  fill: currentColor;
+}
+
+/**
+  Приводим к единому цвету svg-элементы
+  (за исключением тех, у которых уже указан
+  атрибут stroke со значением 'none')
+ */
+:where([stroke]:not(
+  [stroke="none"],
+  [stroke^="url"]
+)) {
+  stroke: currentColor;
+}
+
+/**
+  Чиним баг задержки смены цвета при взаимодействии с svg-элементами
+ */
+svg * {
+  transition-property: fill, stroke;
+}
+
+/**
+  Приведение рамок таблиц в классический 'collapse' вид
+ */
+:where(table) {
+  border-collapse: collapse;
+  border-color: currentColor;
+}
+
+/**
+  Удаляем все анимации и переходы для людей,
+  которые предпочитают их не использовать
+ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+html{
+	font-family: Istok Web;
+	
+	letter-spacing: 0.01em;
+
+	text-transform: uppercase;
+}
+
+:root{
+	--color-blue: #8099c5;
+	--color-light-brown: #b5a56e;
+	--color-violet: #9f94c5;
+	--color-green: #79a36a;
+	--color-dark: #1f2123;
+	--color-light: #ffffff;
+	--color-light-gray: #f0f0f0;
+	--color-gray-borders: #626262;
+	--color-arrow-gray: #aeaeae;
+	--color-bg-gray: #e8e8e8;
+	--gradient-white: radial-gradient(at 70% 50%, #fff 30%, #eaeaea 70%);
+	--gradient-section-text: linear-gradient(to right, #e8e8e8, #828282);
+	--main-color: var(--color-blue);
+	--text-xs: 13px;
+	--text-base: 16px;
+	--text-m: 28px;
+	--text-l: 58px;
+	--transition-params: 0.2s ease-in-out;
+}
+
+/*
+	НАВИГАЦИЯ
+*/
+
+header{
+	background-color: #eaeaea;
+}
+
+nav{
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 12vh;
+	background-color: transparent;
+	z-index: 100;
+	display: flex;
+	align-items: end;
+}
+.nav-container{
+	width: 94%;
+	margin: 20px auto;
+	display: flex;
+	justify-content: space-between;
+	align-items: end;
+}
+
+.logo{
+	width: 7%;
+}
+
+.nav-links{
+	display: flex;
+	flex-flow: row nowrap;
+	width: 25%;
+	justify-content: space-between;
+	
+}
+
+.nav-links a{
+	padding: 5px;
+	font-size: var(--text-xs);
+	text-decoration: none;
+	color: var(--color-dark);
+	transition: var(--transition-params);
+}
+
+.nav-links a:hover{
+	text-decoration: none;
+	color: #939393;
+}
+
+.contacts-dropdown {
+	position: relative;
+	width: 9%;
+  
+	font-family: Istok web, sans-serif;
+  }
+  
+  /* КНОПКА */
+  
+.contacts-btn {
+	width: 100%;
+	height: 36px;
+  
+	background-color: var(--color-dark);
+	border: none;
+  
+	padding: 0 18px;
+  
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+  
+	cursor: pointer;
+  
+	color: white;
+	font-size: var(--text-xs);
+	letter-spacing: 1px;
+  
+	text-transform: uppercase;
+  
+	transition: background-color 0.2s ease-in-out;
+}
+  
+.contacts-btn:hover {
+	background-color: #25272c;
+}
+  
+  /* СТРЕЛКА */
+  
+.arrow {
+	transition: transform 0.3s ease-in-out;
+}
+  
+  /* МЕНЮ */
+  
+.dropdown-menu {
+	position: absolute;
+  
+	top: calc(100% + 2px);
+	right: 0;
+  
+	width: 100%;
+  
+	background: #1d1f23;
+  
+	overflow: hidden;
+  
+	opacity: 0;
+	visibility: hidden;
+  
+	transform: translateY(-10px);
+  
+	transition:
+	    opacity 0.2s ease-in-out,
+	    transform 0.2s ease-in-out,
+	    visibility 0.2s;
+}
+  
+  /* ПУНКТЫ */
+  
+.dropdown-menu a {
+	display: flex;
+	align-items: center;
+  
+	min-height: 48px;
+  
+	padding: 0 14px;
+  
+	color: white;
+  
+	font-size: 13px;
+	line-height: 1.4;
+  
+	border-top: 1px solid rgba(255,255,255,0.12);
+  
+	transition: background-color 0.2s ease-in-out;
+}
+  
+.dropdown-menu a:hover {
+	background-color: var(--color-dark);
+}
+  
+  /* ОТКРЫТИЕ */
+  
+.contacts-dropdown:hover .dropdown-menu {
+	opacity: 1;
+	visibility: visible;
+  
+	transform: translateY(0);
+}
+  
+  /* ПОВОРОТ СТРЕЛКИ */
+  
+.contacts-dropdown:hover .arrow {
+	transform: rotate(180deg);
+}
+
+.contacts-without-underline-link{
+	text-decoration: none;
+}
+
+
+.hero-section{
+	height: 100vh;
+	width: 100%;
+	background: var(--gradient-white);
+	position: relative;
+	top: 0;
+}
+
+.right-color-hero-section{
+	background-color: var(--main-color);
+	width: 68%;
+	height: 23%;
+	position: absolute;
+	border-radius: 5px 5px 0 0;
+	bottom: 0;
+	right: 0;
+	transition: var(--transition-params);
+}
+
+.left-color-hero-section{
+	background-color: var(--main-color);
+	width: 32%;
+	height: 17%;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	transition: var(--transition-params);
+}
+
+.arrow-buttons{
+	width: 32%;
+	height: 23%;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	display: grid;
+	grid-template-columns: 80% 10% 10%;
+}
+
+#left-arrow-btn, #right-arrow-btn {
+	cursor: pointer;
+	padding: 10px;
+}
+
+#left-arrow-btn{
+	border-radius: 50%;
+	fill: var(--color-arrow-gray);
+	transition: var(--transition-params);
+}
+
+#left-arrow-btn:active{
+	background-color: var(--main-color);
+	
+	transform: scale(2)
+}
+
+#right-arrow-btn{
+	border-radius: 50%;
+	fill: var(--color-dark);
+	transition: var(--transition-params);
+}
+
+#right-arrow-btn:active{
+	background-color: var(--main-color);
+	transform: scale(2)
+}
+
+.hero-section-photo{
+	width: 98.5%;
+	position: absolute;
+	bottom: 0;
+	left: 1.5%;
+}
+
+.hero-main-container{
+	width: 95%;
+	height: 85%;
+	margin: 0 auto;
+	display: flex;
+	align-items: center;
+}
+
+.main-text{
+	margin-top: 12vh;
+	width: 45%;
+}
+
+.main-text h1{
+	font-size: var(--text-l);
+	margin: 0;
+	line-height: 1.18em;
+}
+
+.main-text p{
+	font-size: var(--text-base);
+}
+
+.round-link-tg{
+	background-color: var(--main-color);
+	border-radius: 50px;
+	width: 70%;
+	height: 5vh;
+	transition: var(--transition-params);
+}
+.round-link-tg a{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	height: 100%;
+	font-size: var(--text-base);
+	color: var(--color-light);
+	text-decoration: none;
+	transition: var(--transition-params);
+}
+
+.round-link-tg a:hover{
+	color: var(--main-color);	
+}
+
+.round-link-tg:hover{
+	background-color: var(--color-light-gray);
+}
+
+.main-text-swap{
+	font-size: var(--text-m);
+	letter-spacing: 0.05em;
+	color: var(--color-light);
+	margin: 1.6vw 2.6vw;
+}
+
+/* ТИПОВАЯ СЕКЦИЯ */
+
+.type-section{
+	width: 100%;
+	height: 120vh;
+	display: flex;
+	flex-direction: row;
+	
+}
+
+.type-section-left-container{
+	width: 33%;
+	background-color: var(--main-color);
+	display: grid;
+	grid-template-columns: 100%;
+	grid-template-rows: 50% 50%;
+	
+	transition: var(--transition-params);
+}
+
+.left-container-services{
+	width: 80%;
+	margin: 0 auto;
+	display: flex;
+	justify-content: left;
+	flex-direction: column;
+}
+
+.left-section-headers{
+	font-size: var(--text-base);
+	font-weight: 300;
+	margin-bottom: 10vh;
+}
+
+.type-section-btn{
+	max-width: 60%;
+	border: none;
+	background-color: transparent;
+	font-size: var(--text-base);
+	margin-bottom: 2vh;
+	cursor: pointer;
+	transition: var(--transition-params);
+}
+
+.type-section-btn:hover{
+	text-decoration: underline;
+}
+
+.type-section-btn:active{
+	text-decoration: underline;
+	color: var(--color-light);
+}
+
+.type-section-right-container{
+	width: 67%;
+	background-color: var(--color-dark);
+	display: grid;
+	grid-template-columns: 100%;
+	grid-template-rows: 50% 50%;
+	padding: 5% 2%;
+}
+
+.right-section-main-desc{
+	width: 70%;
+	display: flex;
+	flex-direction: column;
+}
+
+.right-section-headers{
+	font-size: var(--text-m);
+	background: var(--gradient-section-text);
+	background-clip: text;
+	color: transparent;
+	margin-bottom: 1vw;
+}
+
+.right-section-text{
+	font-size: var(--text-base);
+	background: var(--color-light-gray);
+	background-clip: text;
+	color: transparent;
+}
+
+/* SERVICE CARD */
+
+.service-card{
+	width: 100%;
+	height: 100%;
+	border: 1px var(--color-gray-borders) solid;
+	border-radius: 0.2vw;
+}
+
+.top-part-card{
+	display: flex;
+	flex-direction: row;
+	border-bottom: 1px var(--color-gray-borders) solid;
+}
+
+.top-part-card-left, .top-part-card-right{
+	width: 50%;
+}
+
+.top-part-card-left{
+	padding: 2%;
+}
+
+.service-desc-duration, .service-desc-price, .service-go-to-brief{
+	padding: 2%;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+}
+
+.duration-item::after{
+	content: ' мин.';
+	text-transform: lowercase;
+}
+
+.price-item::before{
+	content: 'от ';
+	text-transform: lowercase;
+}
+
+.price-item::after{
+	content: ' \20BD.';
+	text-transform: lowercase;
+}
+
+.service-go-to-brief{
+	position: relative;
+	background-color: var(--color-bg-gray);
+	border-bottom-left-radius: 0.2vw;
+	border-bottom-right-radius: 0.2vw;
+}
+
+.go-to-brief{
+	color: var(--color-dark)
+}
+
+.service-go-to-brief svg{
+	margin: 1vw 2vw;
+}
+
+.service-go-to-brief-hide-panel{
+	background-color: var(--color-dark);
+	position: absolute;
+	width: 85%;
+	height: 20%;
+	bottom: 0;
+	left: 0;
+}
