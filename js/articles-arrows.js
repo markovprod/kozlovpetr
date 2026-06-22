@@ -94,3 +94,9 @@ else{
 		arrowsArticlesColorSwap();
 	})
 }
+
+sliderArticlesTrack.addEventListener('touchmove', function(event) {
+	event.stopPropagation();
+
+	event.preventDefault();
+  }, { passive: false });
