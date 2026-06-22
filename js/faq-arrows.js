@@ -43,11 +43,11 @@ if (window.innerHeight > window.innerWidth){
 	}
 
 	sliderFaqTrack.addEventListener('touchstart', (e) => {
-		startY = e.changedTouches[0].screenY;
+		startY = e.changedTouches[0].clientY;
 	});
 	
 	sliderFaqTrack.addEventListener('touchend', (e) => {
-		endY = e.changedTouches[0].screenY;
+		endY = e.changedTouches[0].clientY;
 		handleSwipe();
 	});
 	
