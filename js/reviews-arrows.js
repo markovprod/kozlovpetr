@@ -97,3 +97,8 @@ else{
 	})
 }
 
+sliderReviewTrack.addEventListener('touchmove', function(event) {
+	event.stopPropagation();
+
+	event.preventDefault();
+  }, { passive: false });
