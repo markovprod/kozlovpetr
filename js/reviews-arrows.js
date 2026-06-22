@@ -40,11 +40,25 @@ if (window.innerHeight > window.innerWidth){
 	changeSlides();
 
 	sliderReviewTrack.addEventListener('touchstart', (e) => {
-		startX = e.changedTouches[0].screenX;
+		startX = e.changedTouches[0].clientX;
 	});
+
+	sliderReviewTrack.addEventListener(
+		"touchmove",
+		(e) => {
+			const dx = Math.abs(e.touches[0].clientX - startX);
+			const dy = Math.abs(e.touches[0].clientY - startY);
+	
+			// если движение больше по горизонтали
+			if (dx > dy) {
+				e.preventDefault();
+			}
+		},
+		{ passive: false }
+	);
 	
 	sliderReviewTrack.addEventListener('touchend', (e) => {
-		endX = e.changedTouches[0].screenX;
+		endX = e.changedTouches[0].clientX;
 		handleSwipe();
 	});
 	
@@ -96,9 +110,3 @@ else{
 		arrowsColorSwap();
 	})
 }
-
-sliderReviewTrack.addEventListener('touchmove', function(event) {
-	event.stopPropagation();
-
-	event.preventDefault();
-  }, { passive: false });
