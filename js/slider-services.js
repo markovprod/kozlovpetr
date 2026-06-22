@@ -1,5 +1,7 @@
 const arrBtn = document.querySelectorAll('.type-section-btn');
 
+const slider = document.querySelector('.slider-services');
+
 const sliderTrack = document.getElementById('slider-services-track');
 
 const pags = document.querySelectorAll('.m-ser-pag-item');
@@ -29,11 +31,11 @@ if (window.innerHeight > window.innerWidth){
 	}
 	changeSlides();
 
-	sliderTrack.addEventListener('touchstart', (e) => {
+	slider.addEventListener('touchstart', (e) => {
 		startX = e.changedTouches[0].screenX;
 	});
 	
-	sliderTrack.addEventListener('touchend', (e) => {
+	slider.addEventListener('touchend', (e) => {
 		endX = e.changedTouches[0].screenX;
 		handleSwipe();
 	});
@@ -73,7 +75,7 @@ else{
 	});
 }
 
-sliderTrack.addEventListener('touchmove', function(event) {
+slider.addEventListener('touchmove', function(event) {
 	event.stopPropagation();
 
 	event.preventDefault();
