@@ -2125,14 +2125,21 @@ footer{
 
 	/* articles */
 
+	.articles-section{
+		
+		min-height: 600px;
+	}
+
 	.slider-articles {
 		width: 100%;
-		height: 78vh;
+		
+		min-height: 600px;
 		overflow: hidden;
 		position: relative;
 	}
 	
 	.slider-articles-track {
+		min-height: 600px;
 		display: flex;
 		flex-flow: nowrap row;
 		transition: var(--transition-params-sliders);
