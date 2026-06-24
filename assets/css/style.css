@@ -870,6 +870,10 @@ nav{
 
 /* REVIEWS */
 
+.review-section{
+	padding-top: 2vh;
+}
+
 .slider-reviews {
 	width: 100%;
 	height: 35vw;
@@ -1075,6 +1079,7 @@ nav{
 
 #faq-container{
 	padding: 0%;
+	padding-bottom: 100px;
 }
 
 .slider-faq{
@@ -1178,7 +1183,7 @@ nav{
 
 .slider-articles {
 	width: 100%;
-	height: 100vh;
+	height: 85vh;
 	overflow: hidden;
 }
 
@@ -1317,7 +1322,8 @@ nav{
 /* CONTACTS SECTION */
 
 .contacts-section{
-	height: 100vh;
+	height: 50vh;
+	padding: 2vh 2%;
 }
 .contacts-all{
 	width: 60%;
