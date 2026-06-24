@@ -11,12 +11,17 @@ const slideArticlesLen = document.querySelector('.articles-slide').offsetWidth +
 const posArticlesMax = arrArticles.length;
 
 const pags = document.querySelectorAll('.m-art-pag-item');
+const pagsVisible = document.querySelectorAll('.m-art-pag-item-visible');
 
 let posArticles = 0;
 
 let startX = 0;
 
+let startY = 0;
+
 let endX = 0;
+
+let gestureDirection = null;
 
 
 if (window.innerHeight > window.innerWidth){
@@ -29,7 +34,7 @@ if (window.innerHeight > window.innerWidth){
 			posArticles -= 1;
 		}
 		sliderArticlesTrack.style.transform = `translateX(-${posArticles * 100}%)`;
-		pags.forEach((element, ind) => {
+		pagsVisible.forEach((element, ind) => {
 			if (ind === posArticles){
 				element.style.backgroundColor = '#5c5c5c';
 			}
@@ -42,23 +47,38 @@ if (window.innerHeight > window.innerWidth){
 
 	sliderArticlesTrack.addEventListener('touchstart', (e) => {
 		startX = e.changedTouches[0].clientX;
+		startY = e.changedTouches[0].clientY;
+	  
+		gestureDirection = null;
 	});
 
 	sliderArticlesTrack.addEventListener(
-		"touchmove",
+		'touchmove',
 		(e) => {
-			const dx = Math.abs(e.touches[0].clientX - startX);
-			const dy = Math.abs(e.touches[0].clientY - startY);
-	
-			// если движение больше по горизонтали
-			if (dx > dy) {
+		    if (gestureDirection) {
+			  if (gestureDirection === 'horizontal') {
 				e.preventDefault();
-			}
+			  }
+			  return;
+		    }
+	  
+		    const dx = Math.abs(e.touches[0].clientX - startX);
+		    const dy = Math.abs(e.touches[0].clientY - startY);
+	  
+		    if (dx < 10 && dy < 10) return;
+	  
+		    gestureDirection = dx > dy ? 'horizontal' : 'vertical';
+	  
+		    if (gestureDirection === 'horizontal') {
+			  e.preventDefault();
+		    }
 		},
 		{ passive: false }
-	);
+	  );
 	
 	sliderArticlesTrack.addEventListener('touchend', (e) => {
+		if (gestureDirection !== 'horizontal') return;
+	  
 		endX = e.changedTouches[0].clientX;
 		handleSwipe();
 	});
@@ -72,6 +92,12 @@ if (window.innerHeight > window.innerWidth){
 			changeSlides(false);
 		}
 	}
+	pags.forEach((element, ind) => {
+		element.addEventListener('click', () => {
+			posArticles = ind;
+			changeSlides();
+		})
+	});
 }
 else{
 	function arrowsArticlesColorSwap(){

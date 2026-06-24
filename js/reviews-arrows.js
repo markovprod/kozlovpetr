@@ -9,12 +9,15 @@ const arrReview = document.getElementsByClassName('review-slide');
 const slideLen = document.querySelector('.review-slide').offsetWidth + 29;
 
 const pags = document.querySelectorAll('.m-rev-pag-item');
+const pagsVisible = document.querySelectorAll('.m-rev-pag-item-visible');
 
 const posiMax = arrReview.length;
 
 let posi = 0;
 
 let startX = 0;
+
+let startY = 0;
 
 let endX = 0;
 
@@ -28,7 +31,7 @@ if (window.innerHeight > window.innerWidth){
 			posi -= 1;
 		}
 		sliderReviewTrack.style.transform = `translateX(-${posi * 100}%)`;
-		pags.forEach((element, ind) => {
+		pagsVisible.forEach((element, ind) => {
 			if (ind === posi){
 				element.style.backgroundColor = '#5c5c5c';
 			}
@@ -41,6 +44,7 @@ if (window.innerHeight > window.innerWidth){
 
 	sliderReviewTrack.addEventListener('touchstart', (e) => {
 		startX = e.changedTouches[0].clientX;
+		startY = e.changedTouches[0].clientY;
 	});
 
 	sliderReviewTrack.addEventListener(
@@ -71,6 +75,12 @@ if (window.innerHeight > window.innerWidth){
 			changeSlides(false);
 		}
 	}
+	pags.forEach((element, ind) => {
+		element.addEventListener('click', () => {
+			posi = ind;
+			changeSlides();
+		})
+	});
 }
 else{
 	function arrowsColorSwap(){

@@ -5,8 +5,10 @@ const slider = document.querySelector('.slider-services');
 const sliderTrack = document.getElementById('slider-services-track');
 
 const pags = document.querySelectorAll('.m-ser-pag-item');
+const pagsVisible = document.querySelectorAll('.m-ser-pag-item-visible');
 
 let startX = 0;
+let startY = 0;
 let endX = 0;
 let pos = 0;
 
@@ -20,7 +22,7 @@ if (window.innerHeight > window.innerWidth){
 			pos -= 1;
 		}
 		sliderTrack.style.transform = `translateX(-${pos * 100}%)`;
-		pags.forEach((element, ind) => {
+		pagsVisible.forEach((element, ind) => {
 			if (ind === pos){
 				element.style.backgroundColor = '#5c5c5c';
 			}
@@ -33,6 +35,7 @@ if (window.innerHeight > window.innerWidth){
 
 	slider.addEventListener('touchstart', (e) => {
 		startX = e.changedTouches[0].clientX;
+		startY = e.changedTouches[0].clientY;
 	});
 
 	slider.addEventListener(
@@ -63,6 +66,12 @@ if (window.innerHeight > window.innerWidth){
 			changeSlides(false);
 		}
 	}
+	pags.forEach((element, ind) => {
+		element.addEventListener('click', () => {
+			pos = ind;
+			changeSlides();
+		})
+	});
 
 }
 else{

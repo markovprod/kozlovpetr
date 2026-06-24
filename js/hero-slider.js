@@ -3,6 +3,7 @@ const slider = document.getElementById('hero-section-mobile');
 const slides = document.querySelectorAll('.hero-mobile-photo');
 
 const pags = document.querySelectorAll('.m-h-pag-item');
+const pagsVisible = document.querySelectorAll('.m-h-pag-item-visible');
 
 const btnGoTo = document.getElementById('mobile-btn-go-to');
 
@@ -22,7 +23,7 @@ let startX = 0;
 let endX = 0;
 
 slides[pos].style.opacity = '1';
-pags[pos].style.backgroundColor = 'var(--color-dark)';
+pagsVisible[pos].style.backgroundColor = 'var(--color-dark)';
 
 function changeSlides(dir){
 	if (dir === true && pos < 3){
@@ -44,7 +45,7 @@ function changeSlides(dir){
 			element.style.opacity = '0';
 		}
 	});
-	pags.forEach((element, ind) => {
+	pagsVisible.forEach((element, ind) => {
 		if (ind === pos){
 			element.style.backgroundColor = 'var(--color-dark)';
 		}
@@ -72,3 +73,9 @@ function handleSwipe(){
 		changeSlides(false);
 	}
 }
+pags.forEach((element, ind) => {
+	element.addEventListener('click', () => {
+		pos = ind;
+		changeSlides();
+	})
+});

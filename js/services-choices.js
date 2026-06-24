@@ -8,10 +8,12 @@ btns.forEach(element => {
 		let selector = element.closest('.service-selector');
 		let list = selector.querySelector('.service-selector-list');
 		let arrow = selector.querySelector('.service-choice-arrow');
+		let spanPlus = selector.querySelector('span');
 		
 		list.classList.toggle('hidden');
 		arrow.classList.toggle('open');
 		element.classList.toggle('open');
+		spanPlus.classList.toggle('open');
 	})	
 });
 
@@ -21,6 +23,9 @@ document.addEventListener('click', () => {
     	});
 	document.querySelectorAll('.service-choice-arrow').forEach(arrow => {
       	arrow.classList.remove('open');
+    	});
+	    document.querySelectorAll('span').forEach(spanPlus => {
+      	spanPlus.classList.remove('open');
     	});
     	btns.forEach(element => {
 		element.classList.remove('open');
@@ -119,12 +124,33 @@ choices.forEach((element, index) => {
 	let serviceDescription = card.querySelector('.service-desc-second');
 	let durationItem = card.querySelector('.duration-item');
 	let priceItem = card.querySelector('.price-item');
+	let mobileDescription = card.querySelector('.mobile-service-desc-second');
+	let headerMD = mobileDescription.querySelector('h4');
+	let textMD = mobileDescription.querySelector('p');
+	let closeMobileDescription = mobileDescription.querySelector('.close-second-desc-arrow');
 	element.addEventListener('click', () => {
 		let variant = element.dataset.service;
 		let info = serviceVariants[variant];
-		button.textContent = info.title;
-		serviceDescription.textContent = info.description;
-		durationItem.textContent = info.duration;
-		priceItem.textContent = info.price;
+		if(window.innerHeight > window.innerWidth){
+			mobileDescription.classList.remove('hidden');
+			button.childNodes[0].nodeValue = info.title;
+			durationItem.textContent = info.duration;
+			priceItem.textContent = info.price;
+
+			let textForDesc = info.description.split(':');
+
+			headerMD.textContent = textForDesc[0];
+			textMD.textContent = textForDesc[1];
+
+			closeMobileDescription.addEventListener('click', () => {
+				mobileDescription.classList.add('hidden');
+			})
+		}
+		else{
+			button.textContent = info.title;
+			serviceDescription.textContent = info.description;
+			durationItem.textContent = info.duration;
+			priceItem.textContent = info.price;
+		}
 	})
 });
