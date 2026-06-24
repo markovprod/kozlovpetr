@@ -84,4 +84,4 @@ leftArrow.addEventListener('click', function(){
 	arrowsSwap();
 })
 
-changeSlide(pos);
+changeSlide(pos);	
