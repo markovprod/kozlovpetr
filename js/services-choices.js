@@ -2,6 +2,14 @@ let choices = document.querySelectorAll('.service-choice');
 
 let btns = document.querySelectorAll('.service-selector-btn');
 
+let sliderTrack = document.getElementById('slider-services-track')
+
+let slidePosition = '0'
+
+function preventScroll(e) {
+	e.preventDefault();
+}
+
 btns.forEach(element => {
 	element.addEventListener('click', (e) => {
 		e.stopPropagation();		
@@ -14,6 +22,12 @@ btns.forEach(element => {
 		arrow.classList.toggle('open');
 		element.classList.toggle('open');
 		spanPlus.classList.toggle('open');
+		let sliderTrackStyle = window.getComputedStyle(sliderTrack);
+		slidePosition = sliderTrackStyle.getPropertyValue('transform');
+		sliderTrack.style.transition = 'none';
+		sliderTrack.style.transform = 'none';
+
+		list.addEventListener('touchmove', preventScroll, { passive: false });
 	})	
 });
 
@@ -119,32 +133,25 @@ const serviceVariants = {
     };
 
 choices.forEach((element, index) => {
+	let cardsList = element.closest('.service-selector-list');
 	let card = element.closest('.service-card');
 	let button = card.querySelector('.service-selector-btn');
 	let serviceDescription = card.querySelector('.service-desc-second');
 	let durationItem = card.querySelector('.duration-item');
 	let priceItem = card.querySelector('.price-item');
-	let mobileDescription = card.querySelector('.mobile-service-desc-second');
-	let headerMD = mobileDescription.querySelector('h4');
-	let textMD = mobileDescription.querySelector('p');
-	let closeMobileDescription = mobileDescription.querySelector('.close-second-desc-arrow');
-	element.addEventListener('click', () => {
+	element.addEventListener('click', (e) => {
+		e.stopPropagation();
+		cardsList.removeEventListener('touchmove', preventScroll);
 		let variant = element.dataset.service;
 		let info = serviceVariants[variant];
 		if(window.innerHeight > window.innerWidth){
-			mobileDescription.classList.remove('hidden');
 			button.childNodes[0].nodeValue = info.title;
 			durationItem.textContent = info.duration;
 			priceItem.textContent = info.price;
-
-			let textForDesc = info.description.split(':');
-
-			headerMD.textContent = textForDesc[0];
-			textMD.textContent = textForDesc[1];
-
-			closeMobileDescription.addEventListener('click', () => {
-				mobileDescription.classList.add('hidden');
-			})
+			cardsList.classList.add('hidden');
+			sliderTrack.style.transform = slidePosition;
+			void sliderTrack.offsetHeight;
+			sliderTrack.style.transition = 'var(--transition-params-sliders)';
 		}
 		else{
 			button.textContent = info.title;
