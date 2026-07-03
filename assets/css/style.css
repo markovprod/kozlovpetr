@@ -1720,6 +1720,7 @@ footer{
 	}
 
 	.right-services-section{
+		margin-top: 40px;
 		display: block;
 	}
 
@@ -1733,6 +1734,10 @@ footer{
 	}
 
 	/* services */
+
+	#m-services{
+		margin-top: 50px;
+	}
 
 	.service-go-to-brief{
 		display: none;
@@ -2144,6 +2149,7 @@ footer{
 	.faq-slide-left{
 		width: 80%;
 		margin: 10px auto;
+		padding: 0;
 	}
 
 	.faq-slide-left .right-section-headers{
@@ -2153,6 +2159,7 @@ footer{
 	.faq-slide-right{
 		width: 80%;
 		margin: 0 auto;
+		padding: 0;
 	}
 
 	.faq-slide-right .right-section-text{
