@@ -1,6 +1,5 @@
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 	anchor.addEventListener('click', function (e) {
-		console.log('click');
 	    e.preventDefault(); // Отменяем стандартное поведение
   
 	    const targetId = this.getAttribute('href');

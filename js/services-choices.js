@@ -12,7 +12,8 @@ function preventScroll(e) {
 
 btns.forEach(element => {
 	element.addEventListener('click', (e) => {
-		e.stopPropagation();		
+		e.stopPropagation();
+
 		let selector = element.closest('.service-selector');
 		let list = selector.querySelector('.service-selector-list');
 		let arrow = selector.querySelector('.service-choice-arrow');
@@ -21,13 +22,18 @@ btns.forEach(element => {
 		list.classList.toggle('hidden');
 		arrow.classList.toggle('open');
 		element.classList.toggle('open');
-		spanPlus.classList.toggle('open');
-		let sliderTrackStyle = window.getComputedStyle(sliderTrack);
-		slidePosition = sliderTrackStyle.getPropertyValue('transform');
-		sliderTrack.style.transition = 'none';
-		sliderTrack.style.transform = 'none';
+		
+		if(window.innerHeight > window.innerWidth){
+			
+			spanPlus.classList.toggle('open');
+			document.body.classList.add('popup-opened');
+			let sliderTrackStyle = window.getComputedStyle(sliderTrack);
+			slidePosition = sliderTrackStyle.getPropertyValue('transform');
+			sliderTrack.style.transition = 'none';
+			sliderTrack.style.transform = 'none';
 
-		list.addEventListener('touchmove', preventScroll, { passive: false });
+			list.addEventListener('touchmove', preventScroll, { passive: false });
+		}
 	})	
 });
 
@@ -140,11 +146,11 @@ choices.forEach((element, index) => {
 	let durationItem = card.querySelector('.duration-item');
 	let priceItem = card.querySelector('.price-item');
 	element.addEventListener('click', (e) => {
-		e.stopPropagation();
 		cardsList.removeEventListener('touchmove', preventScroll);
 		let variant = element.dataset.service;
 		let info = serviceVariants[variant];
 		if(window.innerHeight > window.innerWidth){
+			e.stopPropagation();
 			button.childNodes[0].nodeValue = info.title;
 			durationItem.textContent = info.duration;
 			priceItem.textContent = info.price;
@@ -152,6 +158,7 @@ choices.forEach((element, index) => {
 			sliderTrack.style.transform = slidePosition;
 			void sliderTrack.offsetHeight;
 			sliderTrack.style.transition = 'var(--transition-params-sliders)';
+			document.body.classList.remove('popup-opened');
 		}
 		else{
 			button.textContent = info.title;

@@ -120,9 +120,6 @@ else{
 			posArticles -= 1;
 			sliderArticlesTrack.style.transform = `translateX(-${posArticles * slideArticlesLen}px)`;
 		}
-		else{
-			console.log('Не удалось');
-		}
 		arrowsArticlesColorSwap();
 	})
 

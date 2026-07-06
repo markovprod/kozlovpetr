@@ -215,6 +215,19 @@ svg * {
   }
 }
 
+body.popup-opened {
+	overflow: hidden;
+}
+
+body.popup-opened .slider-services {
+	pointer-events: none;
+}
+
+
+body.popup-opened .service-selector-list {
+	pointer-events: auto;
+}
+
 h1, h2, h3, h4, h5, h6{
 	font-weight: 300;
 }
@@ -225,6 +238,8 @@ html{
 	letter-spacing: 0.05em;
 
 	text-transform: uppercase;
+
+	font-size: 15px;
 }
 
 :root{
@@ -241,10 +256,10 @@ html{
 	--gradient-white: radial-gradient(at 70% 50%, #fff 30%, #eaeaea 70%);
 	--gradient-section-text: linear-gradient(to right, #e8e8e8, #828282);
 	--main-color: var(--color-blue);
-	--text-xs: 13px;
-	--text-base: 16px;
-	--text-m: 28px;
-	--text-l: 58px;
+	--text-xs: 0.75rem;
+	--text-base: 1rem;
+	--text-m: 2rem;
+	--text-l: 3.8rem;
 	--transition-params: 0.2s ease-in-out;
 	--transition-params-sliders: 0.5s ease-in-out;
 	--border-radius-sections: 0.4vw;
@@ -534,6 +549,7 @@ nav{
 	transition: var(--transition-params);
 }
 .round-link-tg a{
+	white-space: nowrap;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -581,7 +597,7 @@ nav{
 	font-size: var(--text-base);
 	font-weight: 300;
 	margin-bottom: 10vh;
-	padding: 16vh 0;
+	padding: 0;
 }
 
 .left-container-services .left-section-headers{
@@ -618,13 +634,13 @@ nav{
 .left-services-section{
 	display: grid;
 	grid-template-columns: 100%;
-	grid-template-rows: 30% 50%;
+	grid-template-rows: 35% 50%;
 }
 
 .right-services-section{
 	display: grid;
 	grid-template-columns: 100%;
-	grid-template-rows: 30% 50%;
+	grid-template-rows: 35% 50%;
 }
 
 .right-section-main-desc{
@@ -703,13 +719,13 @@ nav{
 }
 
 .top-part-card-left{
-	width: 50%;
+	width: 55%;
 	padding: 2%;
 	padding-bottom: 0;
 }
 
 .top-part-card-right{
-	width: 50%;
+	width: 45%;
 	position: relative;
 	overflow: hidden;
 }
@@ -720,8 +736,12 @@ nav{
 	object-fit: cover;
 }
 
+#service-photo-stratsession{
+	object-position: 100%;
+}
+
 .service-desc-first, .service-desc-second{
-	font-size: var(--text-xs);
+	font-size: var(--text-base);
 	margin: 10px 0;
 }
 
@@ -761,6 +781,14 @@ nav{
 
 .service-go-to-brief img{
 	width: 100%;
+}
+
+.service-go-to-brief-hover{
+	width: 100%;
+	position: absolute;
+	inset:0;
+	opacity: 0;
+	transition: var(--transition-params);
 }
 
 .mobile-service-go-to-brief{
@@ -816,6 +844,10 @@ nav{
 	overflow: hidden;
 }
 
+.mobile-choice-info, .bottom-choice-card-part{
+	display: none;
+}
+
 .service-selector-list > li:nth-child(2){
 	border-top: 1px var(--color-gray-borders) solid;
 	border-bottom: 1px var(--color-gray-borders) solid;
@@ -848,11 +880,15 @@ nav{
 	margin: 0 auto;
 }
 
+#clients{
+	padding-top: 16vh;
+}
+
 .clients-list{
 	width: 100%;
 	display: grid;
-	grid-template-columns: repeat(auto-fill, 25%);
-	grid-template-rows: repeat(auto-fill, 50%);
+	grid-template-columns: repeat(auto-fill, 290px);
+	grid-template-rows: repeat(auto-fill, 1fr);
 	gap: 100px 0;
 }
 
@@ -865,6 +901,10 @@ nav{
 
 
 /* REVIEWS */
+
+#reviews{
+	margin-top: calc(2vh + 30px);
+}
 
 .review-section{
 	padding-top: 2vh;
@@ -1066,7 +1106,19 @@ nav{
 	transform: scale(0.7)
 }
 
-
+.review-die{
+	position: absolute;
+	bottom: 0;
+	left: 7%;
+	width: 50%;
+	background-color: #141414;
+	height: 15%;
+	color: var(--color-light);
+	border-top-right-radius: var(--border-radius-sections);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
 
 /* FAQ */
 
@@ -1174,6 +1226,10 @@ nav{
 
 /* ARTICLES SLIDER */
 
+#articles{
+	padding-top: 16vh;
+}
+
 .slider-articles {
 	width: 100%;
 	height: 85vh;
@@ -1258,7 +1314,7 @@ nav{
 
 .article-die{
 	font-size: var(--text-xs);
-	width: 30%;
+	width: 50%;
 	height: 10%;
 	background-color: #141414;
 	display: flex;
@@ -1269,9 +1325,9 @@ nav{
 	left: 0;
 	bottom: 0;
 	border-bottom-left-radius: var(--border-radius-sections);
-	border-bottom: 1px var(--color-gray-borders) solid;
-	border-left: 1px var(--color-gray-borders) solid;
-	margin: 1px;
+	border-bottom: 1px var(#f1f1f1) solid;
+	border-left: 1px var(#f1f1f1) solid;
+	margin: 0;
 }
 
 .articles-slider-arrows{
@@ -1338,6 +1394,13 @@ nav{
 
 .contacts-right-side{
 	color: var(--color-light);
+}
+
+.contacts-right-social-media{
+	width: 45%;
+	display: flex;
+	justify-content: space-between;
+	flex-flow: row nowrap;
 }
 
 /* FOOTER */
@@ -1491,14 +1554,6 @@ footer{
 	.type-section-btn:hover{
 		text-decoration: underline;
 	}
-	
-	.service-go-to-brief-hover{
-		width: 100%;
-		position: absolute;
-		inset:0;
-		opacity: 0;
-		transition: var(--transition-params);
-	}
 
 	.service-go-to-brief-hover:hover{
 		opacity: 1;
@@ -1532,15 +1587,90 @@ footer{
 }
 
 @media (max-width: 1280px) {
-	:root{
-		--text-xs: 7px;
-		--text-base: 10px;
-		--text-m: 22px;
-		--text-l: 52px;
+	html{
+		font-size: 12px;
+	}
+
+	.service-selector{
+		width: 45%;
+		height: 10%;
 	}
 }
 
-@media (orientation: portrait) {
+@media (min-width: 768px) and (max-width: 1024px) {
+	html{
+		font-size: 10px;
+	}
+
+	.nav-links{
+		width: 35%;
+		margin-right: 30%;
+	}
+
+	.contacts-dropdown{
+		display: none;
+	}
+
+	.round-link-tg{
+		height: 10vh;
+	}
+	#btn-go-to{
+		white-space: unset;
+		text-align: center;
+	}
+
+	.arrow-buttons{
+		height: 27%;
+		grid-template-columns: 20% 50% 50%;
+	}
+
+	.service-selector{
+		width: 45%;
+		height: 10%;
+	}
+
+	.contacts-section{
+		height: 100vh;
+	}
+
+	.slider-reviews{
+		height: 90vh;
+	}
+
+	.review-slide{
+		height: 35vw;
+	}
+
+	.review-more-text-container p{
+		margin-top: 55%;
+	}
+
+	.review-slider-arrows{
+		width: 20%;
+	}
+
+	.faq-slide-left{
+		width: 45%;
+	}
+
+	.slider-articles{
+		height: 105vh;
+	}
+
+	.articles-slider-arrows{
+		width: 20%;
+	}
+
+	.contacts-right-social-media{
+		width: 60%;
+	}
+
+	.footer-right-container{
+		width: 30%;
+	}
+}
+
+@media (max-width: 767px) {
 	:root{
 		--text-xs: 11px;
 		--text-base: 15px;
@@ -1720,7 +1850,7 @@ footer{
 	}
 
 	.right-services-section{
-		margin-top: 40px;
+		margin-top: 0;
 		display: block;
 	}
 
@@ -1895,6 +2025,7 @@ footer{
 	}
 
 	.bottom-choice-card-part{
+		display: block;
 		width: 100%;
 		position: absolute;
 		bottom: 0;
@@ -1921,6 +2052,7 @@ footer{
 	}
 	
 	.mobile-choice-info{
+		display: block;
 		padding: 10px;
 		height: 45%;
 	}
@@ -2100,8 +2232,15 @@ footer{
 
 	.mobile-review-cover{
 		position: absolute;
-		top: 0;
+		top: -1px;
 		width: 100%;
+	}
+
+	.review-die{
+		left: 0;
+		width: 50%;
+		height: 15%;
+		border-top-right-radius: var(--border-radius-sections);
 	}
 
 
@@ -2428,3 +2567,5 @@ footer{
 		bottom: 0;
 	}
 }
+
+

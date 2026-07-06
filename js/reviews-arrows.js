@@ -103,9 +103,6 @@ else{
 			posi -= 1;
 			sliderReviewTrack.style.transform = `translateX(-${posi * slideLen}px)`;
 		}
-		else{
-			console.log('Не удалось');
-		}
 		arrowsColorSwap();
 	})
 
@@ -113,9 +110,6 @@ else{
 		if(posi < (posiMax - 1)){
 			posi += 1;
 			sliderReviewTrack.style.transform = `translateX(-${posi * slideLen}px)`;
-		}
-		else{
-			console.log('Не удалось');
 		}
 		arrowsColorSwap();
 	})

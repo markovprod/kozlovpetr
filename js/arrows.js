@@ -49,7 +49,6 @@ function changeSlide(position){
 }
 
 rightArrow.addEventListener('click', function(){
-	console.log('1 Right', pos, rightArrowWorking)
 	if (pos == 3){
 		rightArrowWorking = false;
 	}

@@ -59,6 +59,9 @@ if (window.innerHeight > window.innerWidth){
 	
 	function handleSwipe(){
 		const threshold = 50;
+		if (document.body.classList.contains('popup-opened')) {
+			return; // Код слайдера дальше не выполняется
+		    }
 		if(endX < startX - threshold){
 			changeSlides(true);
 		}
