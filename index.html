@@ -14,7 +14,7 @@
 	<header>
 		<nav>
 			<div class="mobile-nav">
-				<img src="assets/svg/logo.svg" alt="logo" class="logo" id="mobile-logo">
+				<a href="index.html" class="logo"><img src="assets/svg/logo.svg" alt="logo" id="mobile-logo"></a>
 				<img src="assets/svg/burger-btn.svg" alt="burger-btn" id="burger-btn">
 				<div class="mobile-nav-container hidden">
 					<a href="#m-services">УСЛУГИ</a>
@@ -22,11 +22,13 @@
 					<a href="#about">О СПИКЕРЕ</a>
 					<a href="#m-articles">БИЗНЕС-СТАТЬИ</a>
 					<a href="#m-contacts">КОНТАКТЫ</a>
+					<a href="docs/privacy.pdf">ПОЛИТИКА КОНФИДЕНЦИАЛЬНОСТИ</a>
+					<a href="docs/terms_of_service.pdf">ПОЛЬЗОВАТЕЛЬСКОЕ СОГЛАШЕНИЕ</a>
 					<img src="assets/svg/burger-close-btn.svg" alt="burger-close-btn" id="burger-close-btn">
 				</div>
 			</div>
 			<div class="nav-container">
-				<img src="assets/svg/logo.svg" alt="logo" class="logo">
+				<a href="index.html" class="logo"><img src="assets/svg/logo.svg" alt="logo" class=""></a>
 				<div class="nav-links">
 					<a href="#services">Услуги</a>
 					<a href="#clients">КЛИЕНТЫ</a>
@@ -49,8 +51,8 @@
 			
 					<div class="dropdown-menu">
 			
-					<a href="mailto:386169@gmail.com" class="contacts-without-underline-link">
-						386169@gmail.com
+					<a href="mailto:info@kozlovpetr.ru" class="contacts-without-underline-link">
+						info@kozlovpetr.ru
 					</a>
 			
 					<a href="tel:+79039276169" class="contacts-without-underline-link">
@@ -91,8 +93,8 @@
 		<section id="hero-section">
 			<div class="hero-main-container">
 				<div class="main-text">
-					<h1>ДОБРЫЙ ДЕНЬ, </h1>
-					<h1>ЭТО ПЕТР КОЗЛОВ</h1>
+					<h1>ПЕТР КОЗЛОВ: </h1>
+					<h1>Стратег и наставник для вашего бизнеса</h1>
 					<p>Г. ОМСК</p>
 					<div class="round-link-tg">
 						<a id="btn-go-to" href="https://t.me/technicalpred">ПЕРЕЙТИ В ТГ-КАНАЛ «ДНЕВНИК ТЕХ.ПРЕДПРИНИМАТЕЛЯ»</a>
@@ -122,8 +124,8 @@
 		<section id="hero-section-mobile">
 			<div class="hero-mobile-main-container">
 				<div class="mobile-main-text">
-					<h1>ДОБРЫЙ ДЕНЬ, </h1>
-					<h1>ЭТО ПЕТР КОЗЛОВ</h1>
+					<h1>ПЕТР КОЗЛОВ: </h1>
+					<h1>Стратег и наставник для вашего бизнеса</h1>
 				</div>
 				<div class="hero-mobile-photo-container">
 					<img src="assets/images/m-hero-section-first.png" alt="hero-section-1" class="hero-mobile-photo">
@@ -529,7 +531,7 @@
 									</p>
 								</div>
 								<div class="top-part-card-right">
-									<img src="assets/images/service_4.png" alt="">
+									<img src="assets/images/service_4.png" id="service-photo-consultation" alt="">
 									
 									<div class="service-selector">
 										<button class="service-selector-btn">
@@ -694,7 +696,7 @@
 								<h4 class="right-section-headers">
 									Деловая игра
 								</h4>
-								<p class="review-name">Имя не указано</p>
+								<p class="review-name">участник деловой игры «пираты пяти морей»</p>
 								<p class="right-section-text review-desc">
 									«Игра очень познавательная: позволяет сразу понять свою стратегию, как лучше управлять деньгами и инвестировать.
 								</p>
@@ -735,8 +737,7 @@
 								<h4 class="right-section-headers">
 									Бизнес-трекинг
 								</h4>
-								<p class="review-name">Евгеньев Алексей Петрович
-									бренд Molly spot</p>
+								<p class="review-name">Видинеев Алексей Петрович основатель бренда «MOLLY SPOT»</p>
 								<p class="right-section-text review-desc">
 									«Благодарю за сотрудничество в рамках создания и развития концепции, а также активного продвижения и выведения бренда на крупнейшие маркетплейсы.
 								</p>
@@ -1139,7 +1140,7 @@
 				<div class="contacts-all">
 					<div class="contacts-row">
 						<p class="contacts-left-side">Электронная почта</p>
-						<a class="contacts-right-side" href="mailto:386169@gmail.com">386169@gmail.com</a>
+						<a class="contacts-right-side" href="mailto:info@kozlovpetr.ru">info@kozlovpetr.ru</a>
 					</div>
 					
 					<div class="contacts-row">
@@ -1166,22 +1167,32 @@
 				не существует. Моя цель — стать вашим надежным партнером и найти то решение, которое идеально впишется в контекст и задачи вашей компании
 			</h5>
 			<p class="footer-sub-text">С уважением,<br>Козлов Петр Сергеевич</p>
-			<p class="footer-sub-text" id="year">2026</p>
+			<p class="footer-sub-text" id="year"></p>
 			<img id="mobile-footer-logo" src="assets/svg/Union.svg" alt="logo">
 		</div>
 
 		<div class="footer-right-container">
-			<div class="footer-row">
-				<a href="#about">О спикере</a>
-				<a href="#services">Услуги</a>
-				<a href="#clients">Клиенты</a>
-				<a href="#reviews">Отзывы</a>
-				<a href="#faq">Частые вопросы</a>
-				<a href="#articles">Бизнес-статьи</a>
+			<div class="footer-column">
+				<div class="footer-row">
+					<a href="docs/privacy.pdf">Политика конфиденциальности</a>
+					<a href="docs/terms_of_service.pdf">ПОЛЬЗОВАТЕЛЬСКОЕ СОГЛАШЕНИЕ</a>
+				</div>
 			</div>
-			<div class="footer-row-logo">
-				<img src="assets/svg/Union.svg" alt="logo">
+
+			<div class="footer-column">
+				<div class="footer-row">
+					<a href="#about">О спикере</a>
+					<a href="#services">Услуги</a>
+					<a href="#clients">Клиенты</a>
+					<a href="#reviews">Отзывы</a>
+					<a href="#faq">Частые вопросы</a>
+					<a href="#articles">Бизнес-статьи</a>
+				</div>
+				<div class="footer-row-logo">
+					<img src="assets/svg/Union.svg" alt="logo">
+				</div>
 			</div>
+			
 		</div>
 		
 	</footer>
@@ -1197,5 +1208,8 @@
 	<script src="https://cdn.plyr.io/3.6.3/plyr.js"></script>
 	<script type="module" src="js/video-reviews.js"></script>
 	<script type="module" src="js/review-more-text.js"></script>
+	<script>
+		document.getElementById("year").textContent = new Date().getFullYear();
+	</script>
 </body>
 </html>
